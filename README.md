@@ -1,1 +1,1 @@
-# imdb_sentiment_BERT
+# imdb
