@@ -5,7 +5,9 @@ pipeline {
     stage("build") {
       steps {
         echo "Building the application"
-        docker build -t bert:api .
+        script {
+	  sh docker build -t bert:api .
+	}
       }
     }
     
