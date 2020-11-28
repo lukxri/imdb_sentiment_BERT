@@ -1,24 +1,21 @@
 pipeline {
-  agent {
-    dockerfile true
-  }
-  stages {
-    
-    stage("build") {
-      steps {
-        echo "Building the application!?"
-      }
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:14-alpine' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
     }
-    
-    stage("test") {
-      steps {
-        echo "Testing the application"
-      }
-    }
-    stage("deploy") {
-      steps {
-        echo "Deploying the application"
-      }
-    }
-  }
 }
