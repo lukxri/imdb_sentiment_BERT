@@ -7,13 +7,7 @@ pipeline {
     dockerImage = ''
   } 
   stages {
-    
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/lukxri/imdb_sentiment_BERT.git'
-      }
-    }
-    
+   
     stage('Building image') {
       steps{
         script {
