@@ -7,12 +7,24 @@ pipeline {
     dockerImage = ''
   } 
   stages {
+    
+    stage('Cloning Git') {
+      steps {
+        checkout scm
+      }
+    }
    
     stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry
         }
+      }
+    }
+    
+    stage("Testing") {
+      steps {
+        echo "Currently no tests available."
       }
     }
     
