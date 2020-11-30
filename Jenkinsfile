@@ -1,8 +1,11 @@
-pipeline {  environment {
+pipeline {  
+  agent any
+  
+  environment {
     registry = "lukxri/sentiment"
     registryCredential = 'docker-hub'
     dockerImage = ''
-  }  agent any  
+  } 
   stages {
     
     stage('Cloning Git') {
