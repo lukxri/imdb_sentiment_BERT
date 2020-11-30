@@ -1,24 +1,35 @@
-pipeline {
-  agent {
-    dockerfile true
-  }
+pipeline {  
+  agent any
+  
+  environment {
+    registry = "lukxri/sentiment"
+    registryCredential = 'docker-hub'
+    dockerImage = ''
+  } 
   stages {
-    
-    stage("build") {
-      steps {
-        echo "Building the application!?!"
+   
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
       }
     }
     
-    stage("test") {
-      steps {
-        echo "Testing the application"
+    stage('Deploy Image') {
+      steps{    script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
       }
     }
-    stage("deploy") {
-      steps {
-        echo "Deploying the application"
+    
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    
   }
 }
