@@ -11,16 +11,22 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m user
+RUN mkdir /home/user/app/
+RUN mkdir /home/user/data/
+
+ADD requirements.txt /home/user/app/
+WORKDIR /home/user/app
+RUN pip3 install -r requirements.txt
+RUN pip3 install mkl
+ADD . /home/user/app/
 
 RUN chown -R user:user /home/user/
 
-COPY --chown=user *.* /home/user/app/
-
 USER user
-RUN mkdir /home/user/data/
+#RUN mkdir /home/user/data/
 
-RUN cd /home/user/app/ && pip3 install -r requirements.txt
-RUN pip3 install mkl
+#RUN cd /home/user/app/ && pip3 install -r requirements.txt
+#RUN pip3 install mkl
 
-WORKDIR /home/user/app
+#WORKDIR /home/user/app
 
