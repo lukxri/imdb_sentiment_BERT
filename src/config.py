@@ -23,7 +23,7 @@ BERT_PATH = os.path.join(HOME_DIR, "data")
 #BERT_PATH = "bert-base-uncased"
 
 # this is where you want to save the model
-MODEL_PATH = os.path.join(HOME_DIR, "data", "model.bin")
+MODEL_PATH = os.path.join(HOME_DIR, "data", "pytorch_model.bin")
 
 # training file
 TRAINING_FILE = os.path.join(HOME_DIR, "data", "imdb.csv")
