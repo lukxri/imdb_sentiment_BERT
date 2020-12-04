@@ -2,6 +2,7 @@ import gdown
 import os
 import tarfile
 
+# TODO try https://discuss.pytorch.org/t/how-does-one-download-a-data-set-from-a-file-automatically-with-pytorch/74262/5 and remove uneccessary requirements
 
 HOME_DIR = os.path.expanduser("~")
 DATA_DIR = os.path.join(HOME_DIR, "data")
